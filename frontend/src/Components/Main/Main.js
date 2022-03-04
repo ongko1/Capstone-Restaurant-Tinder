@@ -6,6 +6,13 @@ import Home from '../Home/Home'
 import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import Footer from '../FooterComponent'
+import delish from '../Shared/images/delish.jpeg'
+
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
+    Modal, Button, ModalBody, ModalHeader, 
+    Form, FormGroup, Input, Label, NavLink } from 'reactstrap';
+    
 
 const mapStateToProps = state => {
     return {
@@ -34,13 +41,24 @@ class Main extends Component {
             <div>
                 {this.props.token.token !== undefined ?
                         <div>
+                            <Navbar style={{backgroundColor: '#8E0009'}}>
+                            <NavbarBrand className='mr-auto' href="/">
+                                <img src={delish} height="45" width="110" alt="Delish logo"/>
+                            </NavbarBrand>
                             <Link to='/home'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/home'/>
+                            </Navbar>
 
                         </div>  
-                    : 
-                        <Link to='/login'>Home | </Link>
+                    :
+                        <Navbar style={{backgroundColor: '#8E0009'}}>
+                            <NavbarBrand className='mr-auto' href="/">
+                                <img src={delish} height="45" width="110" alt="Delish logo"/>
+                            </NavbarBrand>
+                           <Link to='/login'>Home | </Link> 
+                        </Navbar>
+                        
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
@@ -48,6 +66,7 @@ class Main extends Component {
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Redirect to='/login'/>
                 </Switch>
+                <Footer/>
             </div>
         )
     }

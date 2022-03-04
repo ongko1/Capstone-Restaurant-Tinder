@@ -1,3 +1,8 @@
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER';
+export const ADD_RESTAURANTS = 'ADD_RESTAURANTS';
+export const DELETE_RESTAURANTS = 'DELETE_RESTAURANTS';
+export const ADD_REJECTS = 'ADD_REJECTS';
+export const MAKE_FAVORITES = 'MAKE_FAVORITES';
+export const DELETE_FAVORITES = 'DELETE_FAVORITES';

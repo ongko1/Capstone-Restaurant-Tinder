@@ -7,7 +7,22 @@ export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
             token: Token,
-            user: User
+            user: User,
+            rejects:[],
+            favorites:[],
+            restaurants:[],
+            restaurant: {
+                id: '',
+                name: '',
+                image_url: '',
+                url: '',
+                review_count: Number,
+                categories: [],
+                rating: Number,
+                location: [],
+                display_phone: '',
+                price: ''
+            }
         }),
         applyMiddleware(thunk)
     );
