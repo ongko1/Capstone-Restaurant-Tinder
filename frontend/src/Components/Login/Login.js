@@ -69,14 +69,48 @@ class Login extends Component {
         axios.get(baseUrl + "/favorites")
         .then((response) => {
         console.log(response);*/
-        axios.defaults.headers.common['Authorization'] = `Bearer {UGsyAZj9rdohTe8NG0MqHxGsQ4YZoRnV3wPVLBqkBWXkZ6XgNrUHmXuXgjbxkemLqeIhW79u-Lf7VuVkr9ppVCqQ6LfwGaOICkmkeDo7mD7EWlgRSh7IqtEoWLEiYnYx}`;
-        axios.get(`${'https://cors-anywhere.herokuapp.com/'}"https://api.yelp.com/v3/businesses/search?term=restaurants&location=19145"`)
-        .then((response) => {
-        console.log(response)
-    })
+        const config = {
+              headers: {
+        "accept": "application/json",
+        "x-requested-with": "xmlhttprequest",
+        "Access-Control-Allow-Origin":"*",
+        "Authorization": `Bearer {UGsyAZj9rdohTe8NG0MqHxGsQ4YZoRnV3wPVLBqkBWXkZ6XgNrUHmXuXgjbxkemLqeIhW79u-Lf7VuVkr9ppVCqQ6LfwGaOICkmkeDo7mD7EWlgRSh7IqtEoWLEiYnYx}`
+     },
+            
+          };
+        
 
-        
-        
+       // axios.defaults.headers.common['Authorization'] = `Bearer {UGsyAZj9rdohTe8NG0MqHxGsQ4YZoRnV3wPVLBqkBWXkZ6XgNrUHmXuXgjbxkemLqeIhW79u-Lf7VuVkr9ppVCqQ6LfwGaOICkmkeDo7mD7EWlgRSh7IqtEoWLEiYnYx}`;
+        //headers: {'X-Requested-With': 'XMLHttpRequest'},
+        /*axios.get("hhttps://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=50",config)
+        .then((response) => {
+        console.log(response)*/
+        //UI feedback to tell the user when we are retrieving infromation from the API 
+        //this.setState({ loading: true })
+
+        //using a proxy server cors-anywhere to get rid of the CROS probblem 
+        //SUPER HOT TIP: passing the location variable, which equals to the user's input (see below). Instead of grabbbing the entire API, it will only retrieve the restaurants that are closed to the lcoation information we entered. This makes the lodading wayyyyyyy faster.
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=19145`, {
+        //required authorization format from API 
+        headers: {
+            //to get the API from the .env file use process.env.{variable name}
+            Authorization: `Bearer {UGsyAZj9rdohTe8NG0MqHxGsQ4YZoRnV3wPVLBqkBWXkZ6XgNrUHmXuXgjbxkemLqeIhW79u-Lf7VuVkr9ppVCqQ6LfwGaOICkmkeDo7mD7EWlgRSh7IqtEoWLEiYnYx}`
+        },
+        //option params passed to API call to retrieve only breakfast and lunch spots 
+        params: {
+            categories: 'breakfast_brunch',
+        }
+        })
+        .then((response) => {
+            console.log(response)
+            //change the state of App to reflect on the result we are given from the API
+            //at the same time, setting the loading state to false 
+            //this.setState({ results: res.data.businesses, loading: false })
+        })
+        .catch((err) => {
+            //fire the errorState message if there is no information return from the API
+            //this.setState({ errorState: `Sorry we coudln't find information related to the location you search, do you want to try something else?`, loading: false })
+        })  
         
     }
 

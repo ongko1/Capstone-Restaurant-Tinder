@@ -9,23 +9,22 @@ import { baseUrl } from './Shared/baseUrl';
 
 const Favorites = (props) => {
 
-  const currentToken = localStorage.getItem('token');
-const currentUser = JSON.parse(localStorage.getItem('user'));
-  axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
-  console.log(currentToken);
+  
+  axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;
+  console.log(props.token);
   axios.get(baseUrl + "/favorites")
   .then((response) => {
    console.log(response);
   })
 
-
+  
   
   
     return(
       <div id="app">
       <img id="gif" v-if="isLoading" src={loading} />
       <div id="header">
-        <h1>{this.props.word}</h1>
+        <h1></h1>
           <div id="review">Powered by</div>  
           <a id="link" href="https://www.yelp.com/" target="_blank">
             <img id="yelpLogo" src= {yelp}/> 

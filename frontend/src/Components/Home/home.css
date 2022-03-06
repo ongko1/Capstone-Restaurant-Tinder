@@ -1,7 +1,7 @@
 #apps  {
   display: flex;
   flex-flow: column;
-  background-image: url(../Shared/images/homeimg.jpg);
+  background-image: url(../Shared/images/Family-eating.jpeg);
   background-size: cover;
   align-items: center;
   background-position-y: -400px;
@@ -23,12 +23,12 @@ form {
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  background-color: #111718a9;
+  background-color: #0a000aa9;
   padding: 20px;
   max-width: 1000px;
   margin-top: 0px;
   border-radius: 25px;
-  border: 3px solid #990000;
+  border: 3px solid #00741d;
 }
 #headers {
   display: flex;
@@ -53,7 +53,7 @@ form {
 }
 #zipBox {
   display: flex;
-  border: 3px solid #990000;
+  border: 3px solid #009947;
   border-radius: 10px;
   justify-self: center;
   outline: none;
