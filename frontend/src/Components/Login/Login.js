@@ -65,6 +65,7 @@ class Login extends Component {
         await this.props.dispatch(addUser(userWithToken.data.user));
         
         
+        
     }
 
     handleInputChange = (event) => {
@@ -74,20 +75,7 @@ class Login extends Component {
             [event.target.name]: event.target.value
         })
     }
-    validate() {
-        let input = this.state.input;
-        const errors = {};
-        let isValid = true;
 
-        if(!input["username"]) {
-            isValid = false;
-            errors["username"] = "please enter your username";
-        }
-
-
-
-        
-    }
 
     render(){
         return(

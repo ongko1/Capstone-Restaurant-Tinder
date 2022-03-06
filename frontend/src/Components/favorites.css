@@ -1,0 +1,35 @@
+#header {
+    font-size: 20pt;
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    align-self: center;
+    flex-basis: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  #yelpLogo {
+    display: flex;
+    max-width: 320px;
+  }
+  #review {
+    margin-top: 10px;
+    align-self: center;
+    color: rgb(254, 254, 254);
+    font-size: 50pt;
+    text-shadow: 5px 5px black;
+  }
+  #app {
+    background-image: url(./Shared/images/homeback.png);
+    display: flex;
+    flex-wrap: wrap;
+    background-size: cover;
+    height: 80vh; 
+    justify-content: space-evenly;
+  }
+  #gif {
+    display: flex;
+    align-self: center;
+    width: 200px;
+    margin-top: 10px;
+  }

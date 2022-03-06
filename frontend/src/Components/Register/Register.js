@@ -17,19 +17,14 @@ const Register = (props) => {
     const isNumber = (val) => !isNaN(Number(val));
     const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
     
-            function CheckPassword(event) {
-        var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-        if(event.value.match(passw))
-        {
-        alert('Correct, try another...')
-        return true;
-        }
-        else
-        {
-        alert('Wrong...!')
-        return false;
-        }
-    }
+    const validEmailRegex = RegExp(
+        /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+      );
+      const validateForm = errors => {
+        let valid = true;
+        Object.values(errors).forEach(val => val.length > 0 && (valid = false));
+        return valid;
+      };
 
     const handleSubmit = () => {
         const data = {username: username, password: password, confirmPassword: confirmPassword, role: 'ROLE_USER'}
@@ -94,13 +89,13 @@ const Register = (props) => {
                 class="form-control"
                 placeholder="Confirm Password"
                 v-model="user.password"
-                onChange={(e) => setConfirmPassword(e.target.value), (e) => CheckPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
             /> 
             
             <Link className="offset-5" to="/login">Have an account?</Link>
             <div>&nbsp;</div>
-            <button className="col-md-6 offset-md-3" type="submit" style={{backgroundColor:"#711919"}} onClick={handleSubmit}>Sign in</button>
+            <button className="col-md-6 offset-md-3" type="submit" style={{backgroundColor:"#711919"}} onClick={handleSubmit}>Register</button>
        
         </div>
         </div>
