@@ -84,7 +84,7 @@ class Main extends Component {
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Route path='/businesses'component={ () => <businessCard/> }/>
-                    <Route path='/favorites' component={() => <Favorites/>} />
+                    <Route path='/favorites' component={ () => <Favorites token = {this.props.token.token}/>} />
                     <Redirect to='/login'/>
                 </Switch>
                 <Footer/>

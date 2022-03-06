@@ -9,6 +9,7 @@ import axios from 'axios'
 import food from '../Shared/images/food.jpeg'
 import { Card, CardTitle, Breadcrumb, BreadcrumbItem, Row } from 'reactstrap'
 import { Control, Form, Errors, actions} from 'react-redux-form';
+import { yelpUrl } from '../Shared/yelpUrl'
 
 
 
@@ -63,6 +64,17 @@ class Login extends Component {
        
         await this.props.dispatch(addToken(userWithToken.data.token))
         await this.props.dispatch(addUser(userWithToken.data.user));
+        console.log(userWithToken.data.token);
+        /*axios.defaults.headers.common['Authorization'] = `Bearer ${userWithToken.data.token}`;
+        axios.get(baseUrl + "/favorites")
+        .then((response) => {
+        console.log(response);*/
+        axios.defaults.headers.common['Authorization'] = `Bearer {UGsyAZj9rdohTe8NG0MqHxGsQ4YZoRnV3wPVLBqkBWXkZ6XgNrUHmXuXgjbxkemLqeIhW79u-Lf7VuVkr9ppVCqQ6LfwGaOICkmkeDo7mD7EWlgRSh7IqtEoWLEiYnYx}`;
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}"https://api.yelp.com/v3/businesses/search?term=restaurants&location=19145"`)
+        .then((response) => {
+        console.log(response)
+    })
+
         
         
         
