@@ -20,8 +20,21 @@ const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 const isNumber = (val) => !isNaN(Number(val));
-const validEmail = (val) =>
-  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+function CheckPassword(inputtxt)
+{
+var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+if(inputtxt.value.match(passw))
+{
+alert('Correct, try another...')
+return true;
+}
+else
+{
+alert('Wrong...!')
+return false;
+}
+}
 
 class Login extends Component {
   constructor(props) {
