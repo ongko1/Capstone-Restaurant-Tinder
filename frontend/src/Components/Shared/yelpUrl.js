@@ -1,1 +1,0 @@
-export const yelpUrl  = "https://api.yelp.com/v3/";

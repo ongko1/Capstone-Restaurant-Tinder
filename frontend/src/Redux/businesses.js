@@ -4,6 +4,7 @@ export const Businesses = (state = {
     id: null,
     name:'',
     image_url:'',
+    is_closed:'',
     url:'',
     review_count: null,
     categories:[],
@@ -16,7 +17,7 @@ export const Businesses = (state = {
 }, action) => {
 switch (action.type) {
     case ActionTypes.ADD_BUSINESSES:
-        return { ...state, isloading: false, errmess: null, restaurants: action.payload  }
+        return { ...state, Businesses: action.payload  }
     
     case ActionTypes.DELETE_BUSINESSES:
         return { ...state, id: null, username: '', authorities: [] }

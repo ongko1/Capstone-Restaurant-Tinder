@@ -3,19 +3,15 @@ import {Switch, Route, Redirect, Link} from 'react-router-dom'
 import Login from '../Login/Login'
 import Register from '../Register/Register'
 import Home from '../Home/Home'
-import {addToken, deleteUser, fetchBusinesses, fetchRestaurants} from '../../Redux/actionCreators'
+import {addToken, deleteUser } from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Footer from '../FooterComponent'
 import delish from '../Shared/images/delish.jpeg'
-import businessCard from '../businessCard'
 
 
+import { Navbar, NavbarBrand, } from 'reactstrap';
 
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
-    Modal, Button, ModalBody, ModalHeader, 
-    Form, FormGroup, Input, Label, NavLink } from 'reactstrap';
-import { Businesses } from '../../Redux/businesses'
 import Favorites from '../Favorites'
     
 
@@ -23,14 +19,14 @@ const mapStateToProps = state => {
     return {
         token: state.token,
         user: state.user,
-        businesses: state.businesses
+        businesses: state.businesses,
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
     addToken: () => { dispatch(addToken()) },
     deleteUser: () => { dispatch(deleteUser())},
-    //fetchBusinesses: () => {dispatch(fetchBusinesses())}
+   
 });
 
 class Main extends Component {
@@ -39,7 +35,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        //this.props.fetchBusinesses();
+       
     }
 
     handleLogout = () => {
@@ -49,12 +45,7 @@ class Main extends Component {
 
     render(){
 
-        const HomePage = () => {
-            return(
-                <Home businesses = {this.props.businesses.businesses.filter((business) => business.id)[0]}
-                />
-            )
-        }
+       
         return(
             <div>
                 {this.props.token.token !== undefined ?
@@ -65,7 +56,7 @@ class Main extends Component {
                             </NavbarBrand>
                             <Link to='/home'>Home | </Link>
                             <Link to='/favorites'> My favorites</Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout</Link> 
+                            <Link to='/login' onClick={this.handleLogout}>  logout</Link> 
                             <Redirect to='/home'/>
                             </Navbar>
 
@@ -76,16 +67,17 @@ class Main extends Component {
                                 <img src={delish} height="45" width="110" alt="Delish logo"/>
                             </NavbarBrand>
                            <Link to='/login'>Home | </Link> 
+                           <Link to='/abouts'>AboutUs | </Link> 
                         </Navbar>
                         
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
-                    <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
-                    <Route path='/businesses'component={ () => <businessCard/> }/>
-                    <Route path='/favorites' component={ () => <Favorites token = {this.props.token.token}/>} />
+                    <Route path='/home' component={this.props.token.token !== undefined ? () => <Home businesses={this.props.businesses}token= {this.props.token.token}/> : null}/>
+                    <Route path='/favorites' component={ () => <Favorites businesses={this.props.businesses} token= {this.props.token.token} />} />
                     <Redirect to='/login'/>
+                    
                 </Switch>
                 <Footer/>
             </div>

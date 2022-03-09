@@ -4,7 +4,7 @@
     display: flex;
     text-align: center;
     align-self: center;
-    flex-basis: 100%;
+    flex-basis: 30%;
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -30,6 +30,53 @@
   #gif {
     display: flex;
     align-self: center;
-    width: 200px;
+    width: 100px;
     margin-top: 10px;
+  }
+  #card{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    background-color: rgb(226, 226, 226);
+    border:20px solid #990000; 
+    padding: 5px;
+    border-radius:10px;
+    min-width: 320px;
+    height: 320px;
+    margin-bottom: 10px;
+  }
+  #name {
+    display: flex;
+    flex-wrap: wrap;
+    color: #990000;
+  }
+   #contact{ 
+    display: flex; 
+    flex-flow: column; 
+  } 
+  #link {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
+  #bottomRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  #stars {
+    padding-right: 30px;
+  }
+  #removeBtn{
+    color: #FFF;
+    background: #990000;
+    width: 150px;
+    height: 60px; 
+    font-size: 18pt;
+    font-weight: bold;
+    border-radius: 10px;
+    outline:none;
+  }
+  #removeBtn:hover {
+    background: rgb(255, 147, 128);  
   }

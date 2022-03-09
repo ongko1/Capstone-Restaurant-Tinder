@@ -3,6 +3,9 @@ import thunk from 'redux-thunk'
 import {Token} from './token'
 import {User} from './user'
 import {Businesses} from './businesses'
+import { createForms } from 'react-redux-form'
+import { InitialFeedback } from './forms'
+import logger from 'redux-logger'
 
 
 export const ConfigureStore = () => {
@@ -11,9 +14,12 @@ export const ConfigureStore = () => {
             token: Token,
             user: User,
             businesses: Businesses,
+            ... createForms({
+                feedback: InitialFeedback
+            })
             
         }),
-        applyMiddleware(thunk)
+        applyMiddleware(thunk,logger)
     );
 
     return store;

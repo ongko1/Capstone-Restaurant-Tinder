@@ -1,10 +1,10 @@
 #apps  {
   display: flex;
   flex-flow: column;
-  background-image: url(../Shared/images/Family-eating.jpeg);
+  background-image: url(../Shared/images/favBack.jpeg);
   background-size: cover;
   align-items: center;
-  background-position-y: -400px;
+  background-position-y: -20px;
   height: 120vh;
   margin-bottom: 0;
 }
@@ -138,4 +138,326 @@ input[type="radio"] {
 }
 #mySearch:hover {
   background: #990000;
+}
+#container {
+  display: flex;
+  background-image: url(../Shared/images/businesscardimg.jpg);
+  background-size: cover;
+  height: 100vh;
+  overflow: auto;
+}
+#row {
+  display: flex;
+  margin: auto;
+}
+.card {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #111718a9;
+  border: 3px solid #990000;
+  border-radius: 25px;
+  max-width: 800px;
+  margin: auto;
+  align-self: center;
+}
+#name {
+  display: flex;
+  border-radius: 10px;
+  background-color: #fcf9f9;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  padding: 10px;
+  margin: auto;
+  border: 4px solid black; 
+  color: #c41200;
+}
+#imageGroup {
+  display: flex;
+  flex-flow: column;
+  padding-top: 10px;
+  margin: auto;
+}
+#image {
+  display: flex;
+  border: 3px solid #990000;
+  border-radius: 80%;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+}
+#yelpPrice {
+  display: flex;
+  flex-flow: row-reverse;
+}
+#yelpLogo {
+  display: flex;
+  width: 150px;
+}
+#price {
+  display: flex;
+  font-size: 22pt;
+  font-weight: bold;
+  color: green;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  padding: 10px;
+  margin: auto;
+}
+#info {
+  display: flex;
+  flex-flow: column;
+  text-decoration: none;
+  color: black;
+  font-size: 15pt;
+}
+#reviews {
+  text-decoration: navajowhite;
+  color:black;
+  cursor: pointer;
+}
+#midRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#contacts {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 15pt;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: fit-content; 
+  width: 200px;
+  margin: 5px;
+  border: 4px solid black; 
+}
+#reviews {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 15pt;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: fit-content;
+  width: 200px;
+  margin: 5px;
+  border: 4px solid black; 
+  
+}
+#stars {
+  display: flex;
+  max-width: 500px;
+  margin-top: 10px;
+  justify-content: center;
+}
+#likeBtn,
+#rejectBtn {
+  display: flex;
+  flex-flow: column;
+  width: 160px;
+  height: 300px;
+  font-size: 25pt;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-weight: bold;
+  border-radius: 10px;
+  outline: none;
+} 
+#thumb {
+  font-size: 50pt;
+}
+#btnRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+#likeBtn{
+  color: #FFF;
+  background: #44CC44;
+  padding: 15px 20px;
+  box-shadow: 0 4px 0 0 #2EA62E;
+}
+#likeBtn:hover {
+  background: #6FE76F;
+  box-shadow: 0 4px 0 0 #7ED37E;
+}
+#rejectBtn{
+  color: #FFF;
+  background: tomato;
+  padding: 15px 20px;
+  box-shadow: 0 4px 0 0 #CB4949;
+}
+#rejectBtn:hover {
+  background: rgb(255, 147, 128);
+  box-shadow: 0 4px 0 0 #EF8282;
+}
+@media screen and (max-width: 800px){
+#row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  order: -1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 5px;
+  background-color: #111718a9;
+  border: 3px solid #990000;
+  border-radius: 25px;
+  max-width: 800px;
+  margin: auto;
+  align-self: center;
+}
+#name {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 18pt;
+  border-radius: 20px;
+  background-color: #fcf9f9;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  margin: auto;
+  border: 4px solid black; 
+  color: #c41200;
+}
+#imageGroup {
+  display: flex;
+  flex-flow: column;
+  padding-top: 10px;
+  margin: auto;
+}
+#image {
+  display: flex;
+  border: 3px solid #990000;
+  border-radius: 80%;
+  margin: auto;
+  width: 250px;
+  height: 250px;
+}
+#yelpPrice {
+  display: flex;
+  flex-flow: row-reverse;
+}
+#yelpLogo {
+  display: flex;
+  width: 150px;
+}
+#price {
+  display: flex;
+  font-size: 22pt;
+  font-weight: bold;
+  color: green;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  padding: 10px;
+  margin: auto;
+}
+#info {
+  display: flex;
+  flex-flow: column;
+  text-decoration: none;
+  color: black;
+  font-size: 15pt;
+}
+#reviews {
+  text-decoration: navajowhite;
+  color:black;
+  cursor: pointer;
+}
+#midRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#contacts {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 15pt;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: fit-content; 
+  width: 200px;
+  margin: 5px;
+  border: 4px solid black; 
+}
+#reviews {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 15pt;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: fit-content;
+  width: 200px;
+  margin: 5px;
+  border: 4px solid black; 
+}
+#stars {
+  display: flex;
+  max-width: 500px;
+  margin-top: 10px;
+  justify-content: center;
+}
+#likeBtn {
+  order: -1;
+  flex-basis: 100%;
+  display: flex;
+  height: 80px;
+  font-size: 16pt;
+  font-weight: bold;
+  border-radius: 10px;
+  outline: none;
+} 
+#rejectBtn{
+  flex-basis: 100%;
+  display: flex;
+  height: 80px;
+  font-size: 16pt;
+  font-weight: bold;
+  border-radius: 10px;
+  outline: none;
+} 
+#thumb {
+  font-size: 25pt;
+}
+#likeBtn {
+  color: #FFF;
+  background: #44CC44;
+  padding: 15px 20px;
+  box-shadow: 0 4px 0 0 #2EA62E;
+}
+#likeBtn:hover {
+  background: #6FE76F;
+  box-shadow: 0 4px 0 0 #7ED37E;
+}
+#rejectBtn{
+  color: #FFF;
+  background: tomato;
+  padding: 15px 20px;
+  box-shadow: 0 4px 0 0 #CB4949;
+}
+#rejectBtn:hover {
+  background: rgb(255, 147, 128);
+  box-shadow: 0 4px 0 0 #EF8282;
+}
 }
