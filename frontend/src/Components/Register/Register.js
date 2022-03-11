@@ -17,10 +17,7 @@ const Register = (props) => {
     const isNumber = (val) => !isNaN(Number(val));
     const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
     const samePassword = (val) => val == password;
-    const checkPassword = (val) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).$/i.test(val);
-    
-    
-  
+    const checkPassword = (val) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(val);
 
     const handleSubmit = () => {
         const data = {username: username, password: password, confirmPassword: confirmPassword, role: 'ROLE_USER'}
@@ -66,7 +63,7 @@ const Register = (props) => {
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 validators={{
-                  required, maxLength: maxLength(15), minLength: minLength(5), validEmail
+                  required, maxLength: maxLength(21), minLength: minLength(6), validEmail
                 }} />
                 <Errors
                 style={{fontWeight:'bolder'}}
@@ -75,7 +72,7 @@ const Register = (props) => {
                 show="touched"
                 messages={{
                   required: 'Required, ',
-                  maxLength: 'Must be 15 characters or less',
+                  maxLength: 'Must be 20 characters or less',
                   minLength: 'Must be greater than 5 characters, ',
                   validEmail: 'Must be a valid email'
                 }}
@@ -94,7 +91,7 @@ const Register = (props) => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 validators={{
-                  required, maxLength: maxLength(15), minLength: minLength(8), checkPassword
+                  required, checkPassword
                 }} />
                 <Errors
                 style={{fontWeight:'bolder'}}
@@ -103,9 +100,8 @@ const Register = (props) => {
                 show="touched"
                 messages={{
                   required: 'Required, ',
-                  maxLength: 'Must be 15 characters or less',
-                  minLength: ' Must be greater than 8 characters',
-                  checkPassword: 'one capital letter, one lower, one number, minimum of 8 characters'
+                  
+                  checkPassword: 'password must be between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
                 }}
         
             />

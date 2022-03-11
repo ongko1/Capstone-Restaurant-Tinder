@@ -1,4 +1,4 @@
-
+import React from "react"
 import './favorites.css';
 import yelp from "./Shared/images/yelpLogo.png"
 import loading from "./Shared/images/loading2.gif"
@@ -12,7 +12,7 @@ function RenderFavorites({favorite}) {
   return(
     <div class= "fav">
     <div id="card" class="business-summary" >
-      <a id="link" href="`${restaurant.url}`" target="_blank">  
+      <a id="link" href={favorite.url} target="_blank">  
         <h1 id="name">{favorite.name}</h1>
         <div id="contact">
           <h2>{ favorite.location.display_address[0] } <br/>
@@ -30,8 +30,10 @@ function RenderFavorites({favorite}) {
 }
 
 function Favorites (props)  {
-  const [favorites, setFavorites] = useState([])
-  const getFavorites = () => {
+const [favorites, setFavorites] = useState([])
+  React.useEffect(() => {
+  
+  
   axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;
   axios.get(baseUrl + "/favorites")
   .then((response) => {
@@ -39,8 +41,8 @@ function Favorites (props)  {
   const s = response.data;
   setFavorites(s)
   })
-  
-}
+})
+
         const faveCard =favorites.map((favorite) =>{
           return(
             <div>
@@ -51,11 +53,7 @@ function Favorites (props)  {
       return(
         
         <div id="app">
-           <button onClick={getFavorites}>get favorite</button>
-            <ul> { favorites.map(favorite =>
-                    <li key={favorite.id}>{favorite.name}</li>
-                    )}
-                    </ul>
+           
     <img id="gif" v-if="isLoading" src={loading} />
     <div id="header">
         <div id="review">Powered by</div>  

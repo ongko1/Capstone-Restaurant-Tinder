@@ -5,7 +5,9 @@ import {useState} from 'react'
 import axios from 'axios'
 import { baseUrl } from '../Shared/baseUrl'
 import yelpLogo from "../Shared/images/yelpLogo.png"
-import logo from "../Shared/images/logo.png"
+import logo from "../Shared/images/delish2.jpeg"
+import { Link } from 'react-router-dom'
+import { addBusinesses, businessesFailed, businessesLoading } from '../../Redux/actionCreators'
 
 function RenderRestaurant({businesses}) {
   return(
@@ -13,13 +15,13 @@ function RenderRestaurant({businesses}) {
       {businesses.map((business) => {
         return(
           <div id="row">
-      <button id="rejectBtn" type="submit" onclickPrevent="addReject">
+      <button id="rejectBtn" type="submit" >
           <div id="thumb">👎</div>REJECT
       </button>
       <div class="card">
         <h1 id="name">{ business.name }</h1>
         <div id="imageGroup">
-          <img id="image" v-if="business.image_url != ''" 
+          <img id="image" 
               src={business.image_url} />
           <img id="image" v-else src={logo} />    
           <div id="yelpPrice">
@@ -27,7 +29,9 @@ function RenderRestaurant({businesses}) {
               <img id="yelpLogo" src={yelpLogo}/>
             </a>
             <p id="price">Price: { business.price }</p>
+            
           </div>
+          <p id="price">Is Closed: {business.is_closed ? 'Closed' : 'Open'}</p>
         </div>    
         <div id="midRow">  
           <p id="contacts">
@@ -59,27 +63,31 @@ const [businesses,setBusinesses] = useState([])
 const [zipCode,setzipCode] = useState()
 const [category,setCategory] = useState([])
 const [radius,setRadius] = useState('')
-const handleSubmit = (event) => {
 
-  if(radius === ''){
+
+const handleSubmit = (event) => {
+  if(radius == null){
     axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;
     yelpService.getRestaurantsNoRadius(zipCode, category)
     .then((response) => {
       console.log(response)
-      const data = response.data;
+      const data = response.json;
       setBusinesses(data)
+      //addBusinesses(data)
     });
   } else {
     axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;
-  yelpService.getRestaurantsWithRadius(zipCode, category, radius)
+  yelpService.getRestaurantsWithRadius(zipCode, category, radius) //pass as props to renderrestaurant
   .then((response) => {
     console.log(response)
     const data = response.data;
     setBusinesses(data)
+    //addBusinesses(data)
     
     });
-    event.preventDefault();
+  //event.preventDefault()
   }
+  // logic to either render homepage or renderrestaurant
 
   /*axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;
   axios.get(baseUrl + "/businesses")
@@ -184,9 +192,17 @@ const handleSubmit = (event) => {
       </div>
       </div>
       
-      <button id="mySearch" type="submit" onClick={handleSubmit} >
+      <Link to={{
+        pathname:'/restaurants',
+        state: {
+          zipCode:zipCode,
+          category:category,
+          radius:radius
+        },
+        }}><button id="mySearch" type="submit" onClick={handleSubmit} >
         Find your restaurant!
-      </button>
+      </button></Link> //event.form.i
+      // pass props via link 
     </form>
     <RenderRestaurant businesses={businesses}/>
   </div> 

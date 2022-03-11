@@ -1,23 +1,20 @@
 import * as ActionTypes from './actionTypes';
 
 export const Businesses = (state = {
-    id: null,
-    name:'',
-    image_url:'',
-    is_closed:'',
-    url:'',
-    review_count: null,
-    categories:[],
-    rating: null,
-    location: '',
-    display_phone:'',
-    price:'',
+    isLoading: true,
     errMess: null,
+    businesses: []
     
 }, action) => {
 switch (action.type) {
     case ActionTypes.ADD_BUSINESSES:
-        return { ...state, Businesses: action.payload  }
+        return { ...state, isLoading:false, errMess:null, Businesses: action.payload  }
+    
+    case ActionTypes.BUSINESSES_LOADING:
+            return{...state, isLoading: true, errMess: null, businesses: []}
+
+    case ActionTypes.BUSINESSES_FAILED:
+                return{...state, isLoading: false, errMess: action.payload, dishes: []}
     
     case ActionTypes.DELETE_BUSINESSES:
         return { ...state, id: null, username: '', authorities: [] }

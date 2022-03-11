@@ -1,9 +1,9 @@
 
 import * as ActionTypes from './actionTypes'
-import {yelpService} from '../Components/services/yelpService'
 import axios from 'axios';
 import { baseUrl } from '../Components/Shared/baseUrl';
 import { type } from '@testing-library/user-event/dist/type';
+import yelpService from '../Components/services/yelpService';
 
 
 export const addToken = (token) => ({
@@ -20,38 +20,71 @@ export const deleteUser = () => ({
     type: ActionTypes.DELETE_USER
 })
 
-
-export const getBusinessByID = (businessID) => (dispatch) => {
-    axios.get(`/businesses/${businessID}`)
-        .catch(response => {
-            if (response.ok) {
-                return response;
-            }
-            else {
-                var error = new Error('Error ' + response.status + ': ' + response.statusText);
-                error.response = response;
-                throw error;
-            }
-        },
-        error => {
-            var errmess = new Error(error.message);
-            throw errmess;
-        })
+export const fetchBusinesses = (zipCode,category,radius,token) => (dispatch) => {
+    if(radius == null){
+        dispatch(businessesLoading(true));
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        yelpService.getRestaurantsNoRadius(zipCode, category)
+        
+        .then(response => {
+          if (response.ok) {
+              return response;
+          }
+          else {
+              var error = new Error('Error ' + response.status + ': ' + response.statusText);
+              error.response = response;
+              throw error;
+          }
+      },
+      error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+      })
+      .then(response => response.json())
+      .then(businesses => dispatch(addBusinesses(businesses)))
+      .catch(error => dispatch(businessesFailed(error.message)));
+        /*.then((response) => {
+          console.log(response)
+          const data = response.json;
+          //setBusinesses(data)
+          addBusinesses(data)*/
+        
+      } else {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      yelpService.getRestaurantsWithRadius(zipCode, category, radius) //pass as props to renderrestaurant
+      /*.then((response) => {
+        console.log(response)
+        const data = response.data;
+        setBusinesses(data)
+        addBusinesses(data)*/
         .then(response => response.json())
-        .then(businesses => dispatch(addBusinesses(businesses)))
-    
-  }
+      .then(businesses => dispatch(addBusinesses(businesses)))
+      .catch(error => dispatch(businessesFailed(error.message)));
+        
+        
+      }
+}
+
 
 export const addBusinesses = (businesses) => ({
     type: ActionTypes.ADD_BUSINESSES,
     payload: businesses
 });
+
+export const businessesLoading = () => ({
+    type: ActionTypes.BUSINESSES_LOADING
+});
+
+export const businessesFailed = (errmess) => ({
+    type: ActionTypes.BUSINESSES_FAILED,
+    payload: errmess
+});
+
 export const postFeedback = (username, password, passwordconfirm, ) => (dispatch) => {
 
     const newFeedback = {
         username: username,
         password: password,
-       
         passwordconfirm: passwordconfirm,
         
     }
@@ -71,4 +104,17 @@ export const postFeedback = (username, password, passwordconfirm, ) => (dispatch
         type: ActionTypes.ADD_RESTAURANTS,
         payload:data
     })
+    export const addFavorites = (favorites) => ({
+        type: ActionTypes.ADD_FAVORITES,
+        payload: favorites
+    });
+    
+    export const favoritesLoading = (favorites) => ({
+        type: ActionTypes.FAVORITES_LOADING
+    });
+    
+    export const favoritesFailed = (errmess) => ({
+        type: ActionTypes.FAVORITES_FAILED,
+        payload: errmess
+    });
     
