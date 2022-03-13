@@ -6,6 +6,7 @@ import {Businesses} from './businesses'
 import { createForms } from 'react-redux-form'
 import { InitialFeedback } from './forms'
 import logger from 'redux-logger'
+import { Favorites } from './favorites'
 
 
 export const ConfigureStore = () => {
@@ -14,6 +15,7 @@ export const ConfigureStore = () => {
             token: Token,
             user: User,
             businesses: Businesses,
+            favorites: Favorites,
             ... createForms({
                 feedback: InitialFeedback
             })

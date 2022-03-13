@@ -93,6 +93,12 @@ div {
   position: relative;
   margin: auto;
   margin-bottom: 10px;
+}input[type="radio"] {
+  float: left;
+  width:150px;
+  clear:none;
+  margin: 2px 0 0 2px;
+  list-style: none;
 }
 label {
   float: left;
@@ -116,13 +122,7 @@ input:checked + label {
   font-weight: bold;
   color: black;
 }
-input[type="radio"] {
-  float: left;
-  width:150px;
-  clear:none;
-  margin: 2px 0 0 2px;
-  list-style: none;
-}
+
 #mySearch {
   display: flex;
   max-width: 250px;
@@ -139,7 +139,7 @@ input[type="radio"] {
 #mySearch:hover {
   background: #990000;
 }
-#container {
+/*#container {
   display: flex;
   background-image: url(../Shared/images/businesscardimg.jpg);
   background-size: cover;
@@ -460,4 +460,4 @@ input[type="radio"] {
   background: rgb(255, 147, 128);
   box-shadow: 0 4px 0 0 #EF8282;
 }
-}
+}*/

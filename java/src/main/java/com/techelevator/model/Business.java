@@ -7,6 +7,7 @@ public class Business {
     private String id;
     private String name;
     private String image_url;
+    private Boolean is_closed;
     private String url;
     private int review_count;
     private List<BusinessCategories> categories;
@@ -15,6 +16,14 @@ public class Business {
     private String display_phone;
     private String price;
 
+
+    public Boolean getIs_closed() {
+        return is_closed;
+    }
+
+    public void setIs_closed(Boolean is_closed) {
+        this.is_closed = is_closed;
+    }
     public String getId() {
         return id;
     }

@@ -77,12 +77,12 @@ class Login extends Component {
     await this.props.dispatch(addToken(userWithToken.data.token));
     await this.props.dispatch(addUser(userWithToken.data.user));
     console.log(userWithToken.data.token);
-    axios.defaults.headers.common[
+    /*axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${userWithToken.data.token}`;
     axios.get(baseUrl + "/favorites").then((response) => {
       console.log(response);
-    });
+    });*/
   };
 
   handleInputChange = (event) => {
@@ -128,9 +128,9 @@ class Login extends Component {
           />
 
           <Link
-            className="offset-5"
+            className="offset-4"
             to="/register"
-            style={{ fontWeight: "bolder" }}
+            style={{ fontWeight: "bolder" ,backgroundColor: "black" }}
           >
             Need an account?
           </Link>

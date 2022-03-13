@@ -24,7 +24,7 @@
     display: flex;
     flex-wrap: wrap;
     background-size: cover;
-    height: 80vh; 
+    height: 100vh; 
     justify-content: space-evenly;
   }
   #gif {

@@ -39,6 +39,6 @@ export default {
       });
   },
   deleteFavorites(businessID) {
-    return axios.delete(`/favorites/${businessID}`)
+    return axios.delete(baseUrl +`/favorites/${businessID}`)
   }
 }

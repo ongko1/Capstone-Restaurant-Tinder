@@ -3,7 +3,7 @@ import {Switch, Route, Redirect, Link} from 'react-router-dom'
 import Login from '../Login/Login'
 import Register from '../Register/Register'
 import Home from '../Home/Home'
-import {addBusinesses, addFavorites, addToken, deleteUser, fetchBusinesses } from '../../Redux/actionCreators'
+import {addBusinesses, addFavorites, addToken, deleteUser,fetchFavorites } from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Footer from '../FooterComponent'
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
     deleteUser: () => { dispatch(deleteUser())},
     addBusinesses: () => { dispatch(addBusinesses)},
     addFavorites: () => { dispatch(addFavorites)},
-    fetchBusinesses: () => { dispatch(fetchBusinesses)}
+    //fetchFavorites: () => { dispatch(fetchFavorites)}
     
 
 });
@@ -41,7 +41,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-       this.props.fetchBusinesses();
+       
     }
 
     handleLogout = () => {
@@ -82,7 +82,7 @@ class Main extends Component {
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home businesses={this.props.businesses}token= {this.props.token.token}/> : null}/>
-                    <Route path='/favorites' component={ () => <Favorites businesses={this.props.businesses} token= {this.props.token.token} />} />
+                    <Route path='/favorites' component={ () => <Favorites businesses={this.props.businesses} token= {this.props.token.token} user ={this.props.user} />} />
                     <Route path='/restaurants' component={ () => <RenderRestaurant businesses={this.props.businesses} token= {this.props.token.token} />} />
                     <Redirect to='/login'/>
                     

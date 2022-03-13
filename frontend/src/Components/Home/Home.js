@@ -8,72 +8,28 @@ import yelpLogo from "../Shared/images/yelpLogo.png"
 import logo from "../Shared/images/delish2.jpeg"
 import { Link } from 'react-router-dom'
 import { addBusinesses, businessesFailed, businessesLoading } from '../../Redux/actionCreators'
-
-function RenderRestaurant({businesses}) {
-  return(
-    <div id="container">
-      {businesses.map((business) => {
-        return(
-          <div id="row">
-      <button id="rejectBtn" type="submit" >
-          <div id="thumb">👎</div>REJECT
-      </button>
-      <div class="card">
-        <h1 id="name">{ business.name }</h1>
-        <div id="imageGroup">
-          <img id="image" 
-              src={business.image_url} />
-          <img id="image" v-else src={logo} />    
-          <div id="yelpPrice">
-            <a id="link" href="https://www.yelp.com/" target="_blank">
-              <img id="yelpLogo" src={yelpLogo}/>
-            </a>
-            <p id="price">Price: { business.price }</p>
-            
-          </div>
-          <p id="price">Is Closed: {business.is_closed ? 'Closed' : 'Open'}</p>
-        </div>    
-        <div id="midRow">  
-          <p id="contacts">
-            { business.location.display_address[0] } <br/>
-            { business.location.display_address[1]} <br/> 
-            { business.display_phone } 
-          </p>
-          <a id="reviews" href={business.url} target="_blank">
-            Reviews: { business.review_count } <br/>
-            Check Out Our Reviews!
-          </a>
-        </div>  
-        <img id="stars" src="getStars" />
-      </div>  
-      <button id="likeBtn" type="submit" onClickPrevent="addFavorite">
-        <div id="thumb">👍</div>LIKE
-      </button>
-    </div>
-        )
-      })}
-  </div>
-  )
-}
-
+import { useDispatch } from 'react-redux'
 
 const Home = (props) => {
-
+const dispatch = useDispatch()
 const [businesses,setBusinesses] = useState([])
 const [zipCode,setzipCode] = useState()
 const [category,setCategory] = useState([])
 const [radius,setRadius] = useState('')
 
 
-const handleSubmit = (event) => {
-  if(radius == null){
+const handleSubmit =  (event) => {
+  dispatch(businessesLoading(true))
+  if(radius == ''){
     axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;
     yelpService.getRestaurantsNoRadius(zipCode, category)
     .then((response) => {
       console.log(response)
-      const data = response.json;
+      const data = response.data;
       setBusinesses(data)
-      //addBusinesses(data)
+      dispatch(addBusinesses(data))
+      
+      //this.props.dispatch(addBusinesses(data))
     });
   } else {
     axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;
@@ -82,21 +38,15 @@ const handleSubmit = (event) => {
     console.log(response)
     const data = response.data;
     setBusinesses(data)
+    dispatch(addBusinesses(data))
     //addBusinesses(data)
     
+    
     });
-  //event.preventDefault()
-  }
-  // logic to either render homepage or renderrestaurant
+ 
 
-  /*axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;
-  axios.get(baseUrl + "/businesses")
-  .then((response) => {
-  console.log(response)
-  const data = response.data;
-  setBusiness(data)
-  event.preventDefault();
-  })*/
+  }
+ 
 }
    
     return(
@@ -192,19 +142,11 @@ const handleSubmit = (event) => {
       </div>
       </div>
       
-      <Link to={{
-        pathname:'/restaurants',
-        state: {
-          zipCode:zipCode,
-          category:category,
-          radius:radius
-        },
-        }}><button id="mySearch" type="submit" onClick={handleSubmit} >
+      <Link to="/restaurants"
+        ><button id="mySearch" type="submit" onClick={handleSubmit} >
         Find your restaurant!
-      </button></Link> //event.form.i
-      // pass props via link 
+      </button></Link> 
     </form>
-    <RenderRestaurant businesses={businesses}/>
   </div> 
   
     );

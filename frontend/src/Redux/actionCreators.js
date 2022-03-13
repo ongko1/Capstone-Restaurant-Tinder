@@ -20,12 +20,10 @@ export const deleteUser = () => ({
     type: ActionTypes.DELETE_USER
 })
 
-export const fetchBusinesses = (zipCode,category,radius,token) => (dispatch) => {
-    if(radius == null){
-        dispatch(businessesLoading(true));
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        yelpService.getRestaurantsNoRadius(zipCode, category)
-        
+export const fetchFavorites = () => (dispatch) => {
+    dispatch(favoritesLoading(true));
+    //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.get(baseUrl + "/favorites")
         .then(response => {
           if (response.ok) {
               return response;
@@ -40,29 +38,10 @@ export const fetchBusinesses = (zipCode,category,radius,token) => (dispatch) => 
           var errmess = new Error(error.message);
           throw errmess;
       })
-      .then(response => response.json())
-      .then(businesses => dispatch(addBusinesses(businesses)))
+      .then(response => response)
+      .then(favorites => dispatch(addFavorites(favorites)))
       .catch(error => dispatch(businessesFailed(error.message)));
-        /*.then((response) => {
-          console.log(response)
-          const data = response.json;
-          //setBusinesses(data)
-          addBusinesses(data)*/
-        
-      } else {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      yelpService.getRestaurantsWithRadius(zipCode, category, radius) //pass as props to renderrestaurant
-      /*.then((response) => {
-        console.log(response)
-        const data = response.data;
-        setBusinesses(data)
-        addBusinesses(data)*/
-        .then(response => response.json())
-      .then(businesses => dispatch(addBusinesses(businesses)))
-      .catch(error => dispatch(businessesFailed(error.message)));
-        
-        
-      }
+         
 }
 
 
@@ -117,4 +96,7 @@ export const postFeedback = (username, password, passwordconfirm, ) => (dispatch
         type: ActionTypes.FAVORITES_FAILED,
         payload: errmess
     });
+    export const deleteFavorites = (businessID) => ({
+        type: ActionTypes.DELETE_FAVORITES
+    })
     
