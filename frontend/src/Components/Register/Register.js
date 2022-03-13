@@ -23,6 +23,11 @@ const Register = (props) => {
         const data = {username: username, password: password, confirmPassword: confirmPassword, role: 'ROLE_USER'}
         if(password === confirmPassword){
             axios.post(baseUrl + "/register", data)
+            .then(response => {
+              if (response.status === 201) {
+                alert("created account succesfully")
+              }
+            })
             .catch(function (error) {
                 if (error.response) {
                   // The request was made and the server responded with a status code
@@ -132,7 +137,7 @@ const Register = (props) => {
             
             <Link style={{fontWeight:'bolder'}} className="offset-1" to="/login">Have an account?</Link>
             <div>&nbsp;</div>
-            <button className="col-md-6 offset-md-3" type="submit" style={{backgroundColor:"#711919"}} onClick={handleSubmit}>Register</button>
+            <Link to="/login"><button className="col-md-6 offset-md-3" type="submit" style={{backgroundColor:"#711919"}} onClick={handleSubmit}>Register</button></Link>
        </Form>
         </div>
         </div>

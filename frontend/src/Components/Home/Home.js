@@ -28,7 +28,7 @@ const handleSubmit =  (event) => {
       const data = response.data;
       setBusinesses(data)
       dispatch(addBusinesses(data))
-      
+
       //this.props.dispatch(addBusinesses(data))
     });
   } else {

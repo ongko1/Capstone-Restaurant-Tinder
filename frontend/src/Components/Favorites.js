@@ -6,10 +6,11 @@ import axios from 'axios';
 import { baseUrl } from './Shared/baseUrl';
 import {useState} from 'react';
 import yelpService from "./services/yelpService";
+import { Link } from "react-router-dom";
 
 
 function RenderFavorites({favorite,token}) {
- 
+  
   const handleRemoveFave = () => {
     
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -17,11 +18,21 @@ function RenderFavorites({favorite,token}) {
   .then((response) => {
   console.log(response)
   const s = response.data;
-  });
+  //alert('Favorite deleted!');
+if ( response.status == 204) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  axios.get(baseUrl + "/favorites")
+  .then((response) => {
+    console.log(response)
+  const s = response.data;
+  //setFavorites(s)
+});
 }
 
-    
-  
+});
+ 
+}
+
   return(
     <div class= "fav">
     <div id="card" class="business-summary" >
@@ -35,7 +46,7 @@ function RenderFavorites({favorite,token}) {
       </a>
       <div id="bottomRow">
         <img id="stars" src="getStars" alt="" /> 
-        <button id="removeBtn" onClick={handleRemoveFave}>Remove from list</button>
+        <Link to="/favorites"><button id="removeBtn" onClick={handleRemoveFave}>Remove from list</button></Link>
       </div>   
     </div> 
   </div>
@@ -45,6 +56,7 @@ function RenderFavorites({favorite,token}) {
 function Favorites (props)  {
 const [favorites, setFavorites] = useState([])
   useEffect(() => {
+    console.log('favorites use effect');
   let mounted = true;
   
   axios.defaults.headers.common['Authorization'] = `Bearer ${props.token}`;

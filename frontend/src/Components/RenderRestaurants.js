@@ -59,12 +59,25 @@ function RestaurantCard({business, token,}) {
         console.log(response)
       });
   }
- const addReject = () => {
+  let tinderContainer = document.querySelector('.tinder');
+   let allCards = document.querySelectorAll('.tinder--card');
+ 
+   function initCards(card, index) {
+    let newCards = document.querySelectorAll('.tinder--card:not(.removed)');
+  
+    newCards.forEach(function (card, index) {
+      card.style.zIndex = allCards.length - index;
+      card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
+      card.style.opacity = (10 - index) / 10;
+    });
     
-    
+    tinderContainer.classList.add('loaded');
+  }
+   const addReject = () => {
+
   }
           return(
-          <div id="row">
+          <div className="tinder" id="row">
                 <div>
                 <button id="rejectBtn" type="submit" onclick={addReject}>
           <div id="thumb">👎</div>REJECT
@@ -116,7 +129,7 @@ function RestaurantCard({business, token,}) {
      const RenderRestaurant = (props) =>  { 
       const dispatch =useDispatch()
       let rejectSet = new Set();
-      const [reject, setReject] =useState()
+      const [reject, setReject] =useState([])
 console.log('Menu Component render is invoked');
 
 if (props.isLoading) {

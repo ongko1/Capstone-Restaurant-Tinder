@@ -14,6 +14,7 @@ import RenderRestaurant from '../RenderRestaurants'
 import { Navbar, NavbarBrand, } from 'reactstrap';
 
 import Favorites from '../Favorites'
+import Invite from '../InviteComponent'
     
 
 const mapStateToProps = state => {
@@ -30,7 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
     deleteUser: () => { dispatch(deleteUser())},
     addBusinesses: () => { dispatch(addBusinesses)},
     addFavorites: () => { dispatch(addFavorites)},
-    //fetchFavorites: () => { dispatch(fetchFavorites)}
+    fetchFavorites: () => { dispatch(addFavorites())}
     
 
 });
@@ -41,7 +42,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-       
+       this.props.fetchFavorites(this.props.token.token)
     }
 
     handleLogout = () => {
@@ -63,6 +64,7 @@ class Main extends Component {
                             </NavbarBrand>
                             <Link to='/home'>Home | </Link>
                             <Link to='/favorites'> My favorites</Link>
+                            <Link to='/invite'> Invite friends </Link>
                             <Link to='/login' onClick={this.handleLogout}>  logout</Link> 
                             <Redirect to='/home'/>
                             </Navbar>
@@ -82,8 +84,9 @@ class Main extends Component {
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home businesses={this.props.businesses}token= {this.props.token.token}/> : null}/>
-                    <Route path='/favorites' component={ () => <Favorites businesses={this.props.businesses} token= {this.props.token.token} user ={this.props.user} />} />
+                    <Route path='/favorites' component={ () => <Favorites favorites={this.props.favorites}businesses={this.props.businesses} token= {this.props.token.token} user ={this.props.user} />} />
                     <Route path='/restaurants' component={ () => <RenderRestaurant businesses={this.props.businesses} token= {this.props.token.token} />} />
+                    <Route path='/invite' component={ () => <Invite/>} />
                     <Redirect to='/login'/>
                     
                 </Switch>

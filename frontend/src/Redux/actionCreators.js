@@ -20,9 +20,9 @@ export const deleteUser = () => ({
     type: ActionTypes.DELETE_USER
 })
 
-export const fetchFavorites = () => (dispatch) => {
+export const fetchFavorites = () => (dispatch,token) => {
     dispatch(favoritesLoading(true));
-    //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     axios.get(baseUrl + "/favorites")
         .then(response => {
           if (response.ok) {
@@ -99,4 +99,5 @@ export const postFeedback = (username, password, passwordconfirm, ) => (dispatch
     export const deleteFavorites = (businessID) => ({
         type: ActionTypes.DELETE_FAVORITES
     })
+    
     
