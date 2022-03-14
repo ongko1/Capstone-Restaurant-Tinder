@@ -69,7 +69,7 @@ public class JdbcUserDao implements UserDao {
         // create user
         String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
-        String ssRole = "ROLE_" + role.toUpperCase();
+        String ssRole = role.toUpperCase();
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         String id_column = "user_id";
