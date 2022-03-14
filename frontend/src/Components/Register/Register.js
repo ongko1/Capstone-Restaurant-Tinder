@@ -5,6 +5,7 @@ import { baseUrl } from '../Shared/baseUrl';
 import food from '../Shared/images/food.jpeg'
 import { Card, CardTitle, Breadcrumb, BreadcrumbItem , Button, Label,Col, Row} from 'reactstrap'
 import { Control, Form, Errors, actions} from 'react-redux-form';
+import Tender from "../Shared/images/Tender.jpg";
 
 const Register = (props) => {
 
@@ -51,9 +52,9 @@ const Register = (props) => {
     }
 
     return(
-        <div className="row row-content justify-content-center "  style={{ backgroundColor: "#BDA656" ,backgroundImage: "url(" + food + ")" }}>
+        <div className="row row-content justify-content-center "  style={{ backgroundColor: "#BDA656" ,backgroundImage: "url(" + Tender + ")" }}>
             <div className=" col-12 col-md-2 ">
-                <h1 className="text-center" style={{color:"red"}}>Delish</h1>
+                <h1 className="text-center" style={{color:"#85db15"}}>Delish</h1>
             <h4 className="text-center" style={{color:"red"}}>Create Account</h4>
             <Form model= "feedback" >
             <label class="sr-only"><Label htmlFor="username" class="sr-only">Username</Label>Username</label>
@@ -137,7 +138,7 @@ const Register = (props) => {
             
             <Link style={{fontWeight:'bolder'}} className="offset-1" to="/login">Have an account?</Link>
             <div>&nbsp;</div>
-            <Link to="/login"><button className="col-md-6 offset-md-3" type="submit" style={{backgroundColor:"#711919"}} onClick={handleSubmit}>Register</button></Link>
+            <Link to="/login"><button className="col-md-6 offset-md-3" type="submit" style={{backgroundColor:"red"}} onClick={handleSubmit}>Register</button></Link>
        </Form>
         </div>
         </div>

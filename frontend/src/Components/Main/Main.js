@@ -7,7 +7,7 @@ import {addBusinesses, addFavorites, addToken, deleteUser,fetchFavorites } from 
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Footer from '../FooterComponent'
-import delish from '../Shared/images/delish.jpeg'
+import de from '../Shared/images/de.jpg'
 import RenderRestaurant from '../RenderRestaurants'
 
 
@@ -15,6 +15,8 @@ import { Navbar, NavbarBrand, } from 'reactstrap';
 
 import Favorites from '../Favorites'
 import Invite from '../InviteComponent'
+import AboutUs from '../AboutUs'
+import ContactUs from '../ContactUs'
     
 
 const mapStateToProps = state => {
@@ -58,31 +60,36 @@ class Main extends Component {
             <div>
                 {this.props.token.token !== undefined ?
                         <div>
-                            <Navbar style={{backgroundColor: '#8E0009'}}>
+                            <Navbar style={{backgroundColor: 'white'}}>
                             <NavbarBrand className='mr-auto' href="/">
-                                <img src={delish} height="45" width="110" alt="Delish logo"/>
+                                <img src={de} height="100" width="110" alt="Delish logo"/>
                             </NavbarBrand>
                             <Link to='/home'>Home | </Link>
-                            <Link to='/favorites'> My favorites</Link>
-                            <Link to='/invite'> Invite friends </Link>
-                            <Link to='/login' onClick={this.handleLogout}>  logout</Link> 
+                            <Link to='/favorites'> My Favorites  |  </Link>
+                            <Link to='/invite'> Invite Friends |  </Link>
+                            <Link to='aboutus'>About Us  | </Link>
+                            <Link to='contactus'> Contact Us  | </Link>
+                            <Link to='/login' onClick={this.handleLogout}> Logout </Link> 
                             <Redirect to='/home'/>
                             </Navbar>
 
                         </div>  
                     :
-                        <Navbar style={{backgroundColor: '#8E0009'}}>
+                        <Navbar style={{backgroundColor: 'white'}}>
                             <NavbarBrand className='mr-auto' href="/">
-                                <img src={delish} height="45" width="110" alt="Delish logo"/>
+                                <img src={de} height="100" width="110" alt="Delish logo"/>
                             </NavbarBrand>
                            <Link to='/login'>Home | </Link> 
-                           <Link to='/abouts'>AboutUs | </Link> 
+                           <Link to='/aboutus'> About Us | </Link> 
+                           <Link to='/contactus'> Contact Us </Link>
                         </Navbar>
                         
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
+                    <Route path='/aboutus'component={()=> <AboutUs/>}/>
+                    <Route path='/contactus'component={()=> <ContactUs/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home businesses={this.props.businesses}token= {this.props.token.token}/> : null}/>
                     <Route path='/favorites' component={ () => <Favorites favorites={this.props.favorites}businesses={this.props.businesses} token= {this.props.token.token} user ={this.props.user} />} />
                     <Route path='/restaurants' component={ () => <RenderRestaurant businesses={this.props.businesses} token= {this.props.token.token} />} />

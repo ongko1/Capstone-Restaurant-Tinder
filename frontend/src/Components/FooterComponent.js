@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Footer(props) {
     return(
-        <div className="footer" style={{ backgroundColor: "#375313"}}>
+        <div className="footer" style={{ backgroundColor: "#aaaaa9"}}>
         <div className="container">
             <div className="row justify-content-center">             
                 <div className="col-4 offset-1 col-sm-2">
@@ -41,7 +41,7 @@ function Footer(props) {
             </div>
             <div className="row justify-content-center">             
                 <div className="col-auto">
-                    <p>© Copyright 2022 Delish</p>
+                    <p>© Designed by Delish Team to Match your Restaurant Needs</p>
                 </div>
             </div>
         </div>

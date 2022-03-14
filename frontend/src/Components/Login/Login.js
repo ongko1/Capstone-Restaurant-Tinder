@@ -4,9 +4,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addToken, addUser } from "../../Redux/actionCreators";
 import { baseUrl } from "../Shared/baseUrl";
-import group from "../Shared/images/Family-eating.jpeg";
 import axios from "axios";
-import food from "../Shared/images/food.jpeg";
+import resized from "../Shared/images/resized.jpg";
 import { Card, CardTitle, Breadcrumb, BreadcrumbItem, Row } from "reactstrap";
 import { Control, Form, Errors, actions } from "react-redux-form";
 
@@ -97,10 +96,10 @@ class Login extends Component {
     return (
       <div
         className="row row-content justify-content-center"
-        style={{ backgroundImage: "url(" + food + ")" }}
+        style={{ backgroundImage: "url(" + resized + ")" }}
       >
         <div className="col-12 col-md-2 ">
-          <h1 className="text-center" style={{ color: "red" }}>
+          <h1 className="text-center" style={{ color: "#85db15", fontSize:72 }}>
             Delish
           </h1>
           <label class="sr-only">Username</label>
@@ -130,7 +129,7 @@ class Login extends Component {
           <Link
             className="offset-4"
             to="/register"
-            style={{ fontWeight: "bolder" ,backgroundColor: "black" }}
+            style={{ fontWeight: "bolder", fontSize:20}}
           >
             Need an account?
           </Link>
@@ -138,7 +137,7 @@ class Login extends Component {
           <button
             className="col-md- offset-md-3"
             type="submit"
-            style={{ backgroundColor: "#711919" }}
+            style={{ backgroundColor: "#85db15" }}
             onClick={this.handleLogin}
           >
             Sign in

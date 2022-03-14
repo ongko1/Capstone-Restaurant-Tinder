@@ -1,0 +1,37 @@
+.aboutus {
+    width: 100vw;
+    min-height: 100;
+    padding: 100px 50px 50px 50px;
+    background-color: #fcf9f9;
+    color: #c41200;
+  }
+
+  iframe{
+      margin: 20px;
+      margin-right: 0px;
+  }
+  #image {
+    display: flex;
+    border: 3px solid #990000;
+    border-radius: 80%;
+    margin: auto;
+    width: 250px;
+    height: 250px;
+  }
+  div .row.row-content {
+    background-image: ();
+    display: flex;
+    flex-wrap: wrap;
+    background-size: cover;
+    height: 80vh;
+    justify-content: space-evenly;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script&family=EB+Garamond&family=Lora&family=Open+Sans:wght@300&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,600&family=Poppins:wght@200;400&family=Roboto:ital,wght@1,100&display=swap');
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Styles";
+
+  }
+
